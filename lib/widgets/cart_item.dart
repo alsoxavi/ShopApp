@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../providers/cart_provider.dart';
+import '../providers/shopping_cart_provider.dart';
 
 class CartItem extends StatelessWidget {
   final String id;
@@ -10,7 +10,13 @@ class CartItem extends StatelessWidget {
   final int quantity;
   final String title;
 
-  CartItem({this.id, this.title, this.quantity, this.price, this.productId});
+  CartItem({
+    @required this.id,
+    @required this.title,
+    @required this.quantity,
+    @required this.price,
+    @required this.productId,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +24,7 @@ class CartItem extends StatelessWidget {
       key: ValueKey(id),
       direction: DismissDirection.endToStart,
       onDismissed: (direction) {
-        Provider.of<CartProvider>(
+        Provider.of<ShoppingCartProvider>(
           context,
           listen: false,
         ).removeItem(productId);

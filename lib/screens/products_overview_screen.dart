@@ -3,8 +3,9 @@ import 'package:provider/provider.dart';
 
 import '../widgets/products_grid.dart';
 import '../widgets/badge.dart';
-import '../providers/cart_provider.dart';
-import '../screens/cart_screen.dart';
+import '../providers/shopping_cart_provider.dart';
+import './cart_screen.dart';
+import '../widgets/app_drawer.dart';
 
 enum FilterOptions {
   Favorites,
@@ -53,7 +54,7 @@ class _ProductOverviewScreenState extends State<ProductOverviewScreen> {
               ),
             ],
           ),
-          Consumer<CartProvider>(
+          Consumer<ShoppingCartProvider>(
             child: IconButton(
               onPressed: () {
                 Navigator.of(context).pushNamed(CartScreen.routeName);
@@ -69,6 +70,7 @@ class _ProductOverviewScreenState extends State<ProductOverviewScreen> {
           ),
         ],
       ),
+      drawer: AppDrawer(),
       body: ProductsGrid(_showOnlyFavorites),
     );
   }
