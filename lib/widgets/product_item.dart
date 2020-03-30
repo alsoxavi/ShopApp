@@ -4,12 +4,17 @@ import 'package:provider/provider.dart';
 import '../screens/product_detail_screen.dart';
 import '../providers/shopping_cart_provider.dart';
 import '../providers/product.dart';
+import '../providers/auth_provider.dart';
 
 class ProductItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final product = Provider.of<Product>(context);
     final cart = Provider.of<ShoppingCartProvider>(
+      context,
+      listen: false,
+    );
+    final authData = Provider.of<AuthProvider>(
       context,
       listen: false,
     );
@@ -35,7 +40,7 @@ class ProductItem extends StatelessWidget {
             icon: Icon(product.isFavorite ? Icons.favorite : Icons.favorite_border),
             color: Theme.of(context).accentColor,
             onPressed: () {
-              product.toggleFavoriteStatus();
+              product.toggleFavoriteStatus(authData.token);
             },
           ),
           title: Text(
@@ -53,9 +58,12 @@ class ProductItem extends StatelessWidget {
                   content: Text(
                     'Added item to cart!',
                   ),
-                  action: SnackBarAction(label: 'UNDO', onPressed: () {
-                    cart.removeSingleItem(product.id);
-                  },),
+                  action: SnackBarAction(
+                    label: 'UNDO',
+                    onPressed: () {
+                      cart.removeSingleItem(product.id);
+                    },
+                  ),
                   duration: Duration(
                     seconds: 2,
                   ),
