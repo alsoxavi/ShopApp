@@ -19,18 +19,19 @@ class Product with ChangeNotifier {
     this.isFavorite = false,
   });
 
-  void toggleFavoriteStatus(String authToken) async {
-    final url = 'https://shopflutterapp.firebaseio.com/products/$id.json?auth=$authToken';
+  void toggleFavoriteStatus(String authToken, String userId) async {
+    final url =
+        'https://shopflutterapp.firebaseio.com/userFavorites/$userId/$id.json?auth=$authToken';
 
     isFavorite = !isFavorite;
     notifyListeners();
 
     try {
-      final response = await http.patch(
+      final response = await http.put(
         url,
-        body: json.encode({
-          'isFavorite': isFavorite,
-        }),
+        body: json.encode(
+          isFavorite,
+        ),
       );
       if (response.statusCode >= 400) {
         isFavorite = !isFavorite;

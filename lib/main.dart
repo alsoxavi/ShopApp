@@ -26,16 +26,18 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProxyProvider<AuthProvider, ProductsProvider>(
           update: (ctx, auth, previousProducts) => ProductsProvider(
             auth.token,
+            auth.userId,
             previousProducts == null ? [] : previousProducts.items,
           ),
-          create: (_) => ProductsProvider("", []), //forma empanadoza de funcionar
+          create: (_) => ProductsProvider('', '', []), //forma empanadoza de funcionar
         ),
         ChangeNotifierProxyProvider<AuthProvider, OrdersProvider>(
           update: (ctx, auth, previousProducts) => OrdersProvider(
             auth.token,
+            auth.userId,
             previousProducts == null ? [] : previousProducts.orders,
           ),
-          create: (_) => OrdersProvider("", []), //forma empanadoza de funcionar
+          create: (_) => OrdersProvider('', '', []), //forma empanadoza de funcionar
         ),
         ChangeNotifierProvider.value(
           value: ShoppingCartProvider(),
