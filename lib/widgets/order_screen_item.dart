@@ -41,7 +41,7 @@ class _OrderScreenItemState extends State<OrderScreenItem> {
             ),
             AnimatedContainer(
               duration: Duration(milliseconds: 300),
-              height: min(widget.order.products.length * 20.0 + 10, 0),
+              height: _expanded ? min(widget.order.products.length * 20.0 + 10, 95) : 0,
               padding: EdgeInsets.symmetric(
                 horizontal: 15,
                 vertical: 4,
