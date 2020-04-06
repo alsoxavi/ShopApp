@@ -110,13 +110,13 @@ class _AuthCardState extends State<AuthCard> with SingleTickerProviderStateMixin
     _controller = AnimationController(
       vsync: this,
       duration: Duration(
-        milliseconds: 500,
+        milliseconds: 300,
       ),
     );
     _slideAnimation = Tween<Offset>(
       begin: Offset(
         0,
-        -1.5,
+        -2,
       ),
       end: Offset(
         0,
@@ -125,7 +125,7 @@ class _AuthCardState extends State<AuthCard> with SingleTickerProviderStateMixin
     ).animate(
       CurvedAnimation(
         parent: _controller,
-        curve: Curves.linear,
+        curve: Curves.easeIn,
       ),
     );
     // _heightAnimation.addListener(() => setState(() {}));
@@ -230,7 +230,7 @@ class _AuthCardState extends State<AuthCard> with SingleTickerProviderStateMixin
       ),
       elevation: 8.0,
       child: AnimatedContainer(
-        duration: Duration(milliseconds: 500),
+        duration: Duration(milliseconds: 300),
         curve: Curves.easeIn,
         height: _authMode == AuthMode.Signup ? 320 : 260,
         // height: _heightAnimation.value.height,
@@ -271,7 +271,7 @@ class _AuthCardState extends State<AuthCard> with SingleTickerProviderStateMixin
                 ),
                 if (_authMode == AuthMode.Signup)
                   AnimatedContainer(
-                    duration: Duration(milliseconds: 500),
+                    duration: Duration(milliseconds: 300),
                     curve: Curves.easeIn,
                     constraints: BoxConstraints(
                       minHeight: _authMode == AuthMode.Signup ? 60 : 0,

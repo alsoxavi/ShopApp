@@ -1,16 +1,27 @@
-# shop_app
+# Basic Flutter Shop App
 
-A new Flutter project.
+This is an app developed to practice Flutter in my free time, later I will update this README to explain the characteristics included, or you can simply take a look at the git =).
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+This app is completely functional at its core, however if you want to try for yourself there are some thing you need to do:
 
-A few resources to get you started if this is your first Flutter project:
+1. Create a firebase project and copy your API key and firebase endpoint as the one in the repository is a just a dummy an not a valid one.
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+2. Enter into the Authentication opctions in firebase and activate the email authentication method.
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+3. Configure your firebase Realtime Database with the following rules:
+
+    ```json
+    {
+      "rules": {
+        ".read": "auth != null",
+        ".write": "auth != null",
+          "products": {
+            ".indexOn": ["creatorId"]
+          }
+      }
+    }
+    ```
+
+4. Enjoy
